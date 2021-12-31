@@ -8,7 +8,7 @@ ADD https://repo1.maven.org/maven2/org/jboss/modules/jboss-modules/1.1.5.GA/jbos
 RUN unzip /tmp/jboss-as-7.1.1.Final.zip -d /opt/app/ && tree /opt/app/ -d
 RUN mv -f /tmp/jboss-modules-1.1.5.GA.jar $JBOSS_HOME/jboss-modules.jar
 RUN useradd jboss -U && chown -R jboss:jboss $JBOSS_HOME
-#WORKDIR /opt/app/
+WORKDIR /opt/app/
 RUN $JBOSS_HOME/bin/add-user.sh admin admin123 --silent=true
 RUN echo "JAVA_OPTS=\"\$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0\"" >> $JBOSS_HOME/bin/standalone.conf
 EXPOSE 8080 9990 9999
